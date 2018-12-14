@@ -13,6 +13,12 @@ services:
       '
       ]
 
+  node:
+    image: node
+    volumes:
+      - .:/app
+    command: "node install && node run watch-pool"
+
   nginx:
     image: nginx
     volumes:
