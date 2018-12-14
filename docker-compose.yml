@@ -10,6 +10,8 @@ services:
       - mariadb
     ports:
       - 8000:80
+    networks:
+      - frontend
 
   php:
     build: .dockerconfig/php
@@ -18,11 +20,16 @@ services:
       - .:/var/www/html
     expose:
       - 9000
+    networks:
+      - frontend
+      - backend
 
   redis:
     image: redis
     expose:
       - 6739
+    networks:
+      - frontend
 
   mariadb:
     image: mariadb
@@ -33,3 +40,9 @@ services:
       MYSQL_PASSWORD: "secret"
     expose:
       - 3306
+    networks:
+      - backend
+
+networks:
+  frontend:
+  backend:
