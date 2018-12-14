@@ -5,6 +5,8 @@ services:
     volumes:
       - .dockerconfig/nginx/conf.d:/etc/nginx/conf.d
       - .:/var/www/html
+    depends_on:
+      - php
     ports:
       - 8000:80
 
