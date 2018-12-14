@@ -4,7 +4,14 @@ services:
     image: composer
     volumes:
       - .:/app
-    command: bash -c 'composer install'
+    command: [
+      'bash', '-c', 
+      '
+      composer install &&
+      if [[ -f /app/.env ]]; then echo "ENV file exists";
+      else cp /app/.env.example /app/.env && php artisan key:generate; fi
+      '
+      ]
 
   nginx:
     image: nginx
