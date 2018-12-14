@@ -1,0 +1,17 @@
+version: '3'
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - .dockerconfig/nginx/conf.d:/etc/nginx/conf.d
+      - .:/var/www/html
+    ports:
+      - 8000:80
+
+  php:
+    build: .dockerconfig/php
+    volumes:
+      - .dockerconfig/php/conf.d:/user/local/etc/php/conf.d
+      - .:/var/www/html
+    expose:
+      - 9000
