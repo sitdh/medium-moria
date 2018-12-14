@@ -7,6 +7,7 @@ services:
       - .:/var/www/html
     depends_on:
       - php
+      - mariadb
     ports:
       - 8000:80
 
@@ -17,3 +18,13 @@ services:
       - .:/var/www/html
     expose:
       - 9000
+
+  mariadb:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: "super-secret-password"
+      MYSQL_DATABASE: "moria"
+      MYSQL_USER: "johnd"
+      MYSQL_PASSWORD: "secret"
+    expose:
+      - 3306
