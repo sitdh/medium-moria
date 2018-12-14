@@ -19,6 +19,11 @@ services:
     expose:
       - 9000
 
+  redis:
+    image: redis
+    expose:
+      - 6739
+
   mariadb:
     image: mariadb
     environment:
