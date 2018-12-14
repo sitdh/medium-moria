@@ -1,5 +1,11 @@
 version: '3.1'
 services:
+  composer:
+    image: composer
+    volumes:
+      - .:/app
+    command: bash -c 'composer install'
+
   nginx:
     image: nginx
     volumes:
@@ -18,6 +24,8 @@ services:
     volumes:
       - .dockerconfig/php/conf.d:/user/local/etc/php/conf.d
       - .:/var/www/html
+    depends_on:
+      - composer
     expose:
       - 9000
     networks:
