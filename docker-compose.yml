@@ -34,14 +34,29 @@ services:
   mariadb:
     image: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: "super-secret-password"
-      MYSQL_DATABASE: "moria"
-      MYSQL_USER: "johnd"
-      MYSQL_PASSWORD: "secret"
+      MYSQL_ROOT_PASSWORD_FILE: "super-secret-password"
+      MYSQL_DATABASE_FILE: "moria"
+      MYSQL_USER_FILE: "johnd"
+      MYSQL_PASSWORD_FILE: "secret"
     expose:
       - 3306
+    secrets:
+      - db_root_password
+      - db_database
+      - db_user
+      - db_password
     networks:
       - backend
+
+secrets:
+  db_root_password:
+    file: .dockerconfig/secrets/db-root-password
+  db_database:
+    file: .dockerconfig/secrets/db-database
+  db_user:
+    file: .dockerconfig/secrets/db-user
+  db_password:
+    file: .dockerconfig/secrets/db-password
 
 networks:
   frontend:
