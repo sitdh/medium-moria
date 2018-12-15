@@ -50,7 +50,7 @@ services:
     expose:
       - 6739
     networks:
-      - frontend
+      - backend
 
   mariadb:
     image: mariadb
