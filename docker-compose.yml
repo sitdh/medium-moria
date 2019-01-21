@@ -35,7 +35,7 @@ services:
   php:
     build: .dockerconfig/php
     volumes:
-      - .dockerconfig/php/conf.d:/user/local/etc/php/conf.d
+      - .dockerconfig/php/conf.d:/usr/local/etc/php/conf.d
       - .:/var/www/html
     depends_on:
       - composer
